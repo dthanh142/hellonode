@@ -11,7 +11,7 @@ node {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
 
-        app = docker.build("teehee/hellonode")
+        app = docker.build("repo.vndirect.com.vn:8082/hellonode")
     }
 
     stage('Test image') {
@@ -29,7 +29,7 @@ node {
          * Second, the 'latest' tag.
          * Pushing multiple tags is cheap, as all the layers are reused. */
         docker.withRegistry('http://repo.vndirect.com.vn:8082', 'docker-repo-credentials') {
-            app.push("${env.BUILD_NUMBER}")
+            /*app.push("${env.BUILD_NUMBER}") */
             app.push("latest")
         }
     }
